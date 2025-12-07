@@ -35,7 +35,7 @@ export default function Footer() {
             <h4 className="font-bold mb-4">Follow</h4>
             <div className="flex gap-4">
               <a
-                href="www.linkedin.com/in/sapariya-darshit-47b7b1287"
+                href="https://www.linkedin.com/in/sapariya-darshit-47b7b1287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition-transform"
