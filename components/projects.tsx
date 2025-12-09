@@ -10,7 +10,6 @@ export default function Projects() {
       tags: ["React", "Next.js", "Express.js", "MongoDB"],
       links: {
         github: "https://github.com/Darshit-Sapariya/travel-advisor.git",
-        live: "#",
       },
     },
     {
@@ -20,7 +19,6 @@ export default function Projects() {
       tags: ["HTML", "CSS", "bootstrap", "JavaScript", "PHP", "MySQL"],
       links: {
         github: "https://github.com/Darshit-Sapariya/clg_management.git",
-        live: "#",
       },
     },
     {
