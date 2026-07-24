@@ -8,9 +8,12 @@ import { ArrowUpRight } from "lucide-react"
 const categories = ["All", "Web", "UI/UX", "Apps"]
 
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState("All")
+
   const projects = [
     {
       title: "Travel-planner ",
+      category: "Web",
       description: "Full-stack application with, Register And Login , Create Trip , Add places .",
       image: "/Travel.jpg",
       tags: ["React", "Next.js", "Express.js", "MongoDB"],
@@ -21,6 +24,7 @@ export default function Projects() {
     },
     {
       title: "Collage Management System",
+      category: "Web",
       description: "Collaborative task management tool with real-time updates and team collaboration features.",
       image: "/clg.png",
       tags: ["HTML", "CSS", "bootstrap", "JavaScript", "PHP", "MySQL"],
@@ -31,6 +35,7 @@ export default function Projects() {
     },
     {
       title: "Portfolio Website",
+      category: "UI/UX",
       description: "Modern portfolio website built with react featuring smooth animations and responsive design.",
       image: "/portfolio.png",
       tags: ["React", "+", "AI"],
@@ -40,6 +45,15 @@ export default function Projects() {
       },
     },
   ]
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter(
+          (project) =>
+            project.category === activeFilter ||
+            project.tags.some((tag) => tag.toLowerCase() === activeFilter.toLowerCase())
+        )
 
   return (
     <section id="works" className="py-20 md:py-32">
