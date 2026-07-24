@@ -142,70 +142,84 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="max-w-2xl mx-auto"
+          className="max-w-2xl mx-auto relative group"
         >
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                required
+          {/* Ambient blur behind form */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 pointer-events-none" />
+
+          {/* Form glass card wrapper */}
+          <div className="relative bg-card/65 backdrop-blur-xl border border-border/80 rounded-3xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300"
+                    required
+                    disabled={isSubmitting}
+                    suppressHydrationWarning
+                  />
+                </div>
+                <div className="relative">
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300"
+                    required
+                    disabled={isSubmitting}
+                    suppressHydrationWarning
+                  />
+                </div>
+              </div>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300"
+                  required
+                  disabled={isSubmitting}
+                  suppressHydrationWarning
+                />
+              </div>
+              <div className="relative">
+                <textarea
+                  placeholder="Your Message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300 resize-none"
+                  required
+                  disabled={isSubmitting}
+                  suppressHydrationWarning
+                />
+              </div>
+              <button
+                type="submit"
                 disabled={isSubmitting}
                 suppressHydrationWarning
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                required
-                disabled={isSubmitting}
-                suppressHydrationWarning
-              />
-            </div>
-            <input
-              type="text"
-              placeholder="Subject"
-              value={formData.subject}
-              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-              required
-              disabled={isSubmitting}
-              suppressHydrationWarning
-            />
-            <textarea
-              placeholder="Your Message"
-              rows={6}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
-              required
-              disabled={isSubmitting}
-              suppressHydrationWarning
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              suppressHydrationWarning
-              className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 disabled:opacity-75 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-primary/20"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 size={18} className="animate-spin" />
-                  Sending Message...
-                </>
-              ) : (
-                <>
-                  Send Message
-                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </>
-              )}
-            </button>
-          </form>
+                className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-75 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-primary/25"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    Sending Message...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
         </motion.div>
       </div>
 
