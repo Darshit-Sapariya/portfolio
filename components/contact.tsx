@@ -2,8 +2,8 @@
 
 import type React from "react"
 import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, ArrowUpRight } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Mail, Phone, MapPin, ArrowUpRight, Loader2, CheckCircle2, XCircle, X } from "lucide-react"
 import emailjs from "emailjs-com"
 
 const contactInfo = [
@@ -35,10 +35,24 @@ export default function Contact() {
     subject: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [dialogState, setDialogState] = useState<{
+    open: boolean
+    type: "success" | "error"
+    title: string
+    message: string
+  }>({
+    open: false,
+    type: "success",
+    title: "",
+    message: "",
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formRef.current) return
+    if (!formRef.current || isSubmitting) return
+
+    setIsSubmitting(true)
 
     emailjs
       .send(
@@ -53,16 +67,28 @@ export default function Contact() {
         "-b6DURYWzSLuzhEdZ",
       )
       .then(() => {
-        alert("Message sent successfully!")
+        setIsSubmitting(false)
+        setDialogState({
+          open: true,
+          type: "success",
+          title: "Message Sent!",
+          message: "Thank you for reaching out! Your message has been sent successfully. I'll get back to you soon.",
+        })
         setFormData({ name: "", email: "", subject: "", message: "" })
       })
       .catch(() => {
-        alert("Failed to send message.")
+        setIsSubmitting(false)
+        setDialogState({
+          open: true,
+          type: "error",
+          title: "Message Failed",
+          message: "Something went wrong while sending your message. Please try again or email me directly.",
+        })
       })
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32">
+    <section id="contact" className="py-20 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -120,6 +146,7 @@ export default function Contact() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                 required
+                disabled={isSubmitting}
                 suppressHydrationWarning
               />
               <input
@@ -129,6 +156,7 @@ export default function Contact() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                 required
+                disabled={isSubmitting}
                 suppressHydrationWarning
               />
             </div>
@@ -139,6 +167,7 @@ export default function Contact() {
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
               required
+              disabled={isSubmitting}
               suppressHydrationWarning
             />
             <textarea
@@ -148,19 +177,88 @@ export default function Contact() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
               required
+              disabled={isSubmitting}
               suppressHydrationWarning
             />
             <button
               type="submit"
+              disabled={isSubmitting}
               suppressHydrationWarning
-              className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 group"
+              className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 disabled:opacity-75 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-primary/20"
             >
-              Send Message
-              <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  Sending Message...
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </>
+              )}
             </button>
           </form>
         </motion.div>
       </div>
+
+      {/* Success / Error Dialog Box Modal */}
+      <AnimatePresence>
+        {dialogState.open && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDialogState({ ...dialogState, open: false })}
+              className="absolute inset-0 bg-background/80 backdrop-blur-md"
+            />
+
+            {/* Dialog Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-md bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-2xl z-10 text-center"
+            >
+              <button
+                onClick={() => setDialogState({ ...dialogState, open: false })}
+                className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 transition-colors"
+              >
+                <X size={18} />
+              </button>
+
+              <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                {dialogState.type === "success" ? (
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                    <CheckCircle2 size={36} />
+                  </div>
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center border border-rose-500/30">
+                    <XCircle size={36} />
+                  </div>
+                )}
+              </div>
+
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                {dialogState.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                {dialogState.message}
+              </p>
+
+              <button
+                onClick={() => setDialogState({ ...dialogState, open: false })}
+                className="w-full py-3 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-md"
+              >
+                Close
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
