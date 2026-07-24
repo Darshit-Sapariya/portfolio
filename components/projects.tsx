@@ -79,6 +79,7 @@ export default function Projects() {
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
+                suppressHydrationWarning
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeFilter === cat
                     ? "gradient-primary text-white"

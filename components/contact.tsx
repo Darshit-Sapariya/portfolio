@@ -120,6 +120,7 @@ export default function Contact() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                 required
+                suppressHydrationWarning
               />
               <input
                 type="email"
@@ -128,6 +129,7 @@ export default function Contact() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                 required
+                suppressHydrationWarning
               />
             </div>
             <input
@@ -137,6 +139,7 @@ export default function Contact() {
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
               required
+              suppressHydrationWarning
             />
             <textarea
               placeholder="Your Message"
@@ -145,9 +148,11 @@ export default function Contact() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full px-5 py-3.5 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
               required
+              suppressHydrationWarning
             />
             <button
               type="submit"
+              suppressHydrationWarning
               className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 group"
             >
               Send Message
