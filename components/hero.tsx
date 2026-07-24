@@ -131,9 +131,32 @@ export default function Hero() {
             {/* Main Visual Container */}
             <div className="relative w-72 h-96 md:w-80 md:h-[400px] flex items-center justify-center">
               
-              {/* Futuristic Background Blur & Glowing Gradients */}
-              <div className="absolute -top-6 -left-6 w-48 h-48 bg-purple-600/30 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-pink-500/25 rounded-full blur-3xl pointer-events-none" />
+              {/* Animated Futuristic Background Blur & Glowing Gradients */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [0.25, 0.4, 0.25],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -top-6 -left-6 w-48 h-48 bg-purple-600 rounded-full blur-3xl pointer-events-none"
+              />
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.2, 0.35, 0.2],
+                }}
+                transition={{
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+                className="absolute -bottom-6 -right-6 w-48 h-48 bg-pink-500 rounded-full blur-3xl pointer-events-none"
+              />
 
               {/* Subtle Dot Grid Pattern */}
               <div className="absolute inset-0 bg-[radial-gradient(#a855f7_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-25 pointer-events-none rounded-3xl" />
@@ -141,8 +164,35 @@ export default function Hero() {
               {/* Decorative Rotating Geometric Ring */}
               <div className="absolute -inset-4 border border-dashed border-purple-500/20 rounded-full animate-[spin_40s_linear_infinite] pointer-events-none" />
               
-              {/* Outer Neon Glow / Glass Card */}
-              <div className="relative w-full h-full rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md p-3.5 shadow-2xl shadow-purple-950/20 group hover:border-purple-500/35 transition-all duration-500 flex flex-col justify-between">
+              {/* Floating tech badges */}
+              <motion.div
+                animate={{ y: [0, 8, 0], x: [0, -4, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -top-3 -right-6 z-25 bg-background/95 backdrop-blur-md border border-purple-500/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5 pointer-events-none"
+              >
+                <span className="text-[10px] font-extrabold text-purple-400 font-mono tracking-wider">&lt;Django /&gt;</span>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+                className="absolute top-1/3 -left-8 z-25 bg-background/95 backdrop-blur-md border border-blue-500/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5 pointer-events-none"
+              >
+                <span className="text-[10px] font-extrabold text-blue-400 tracking-wider">PYTHON 🐍</span>
+              </motion.div>
+
+              {/* Outer Neon Glow / Glass Card with Continuous Floating Animation */}
+              <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative w-full h-full rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md p-3.5 shadow-2xl shadow-purple-950/20 group hover:border-purple-500/35 transition-colors duration-500 flex flex-col justify-between"
+              >
                 
                 {/* Neon Border Image Wrapper */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.15)] group-hover:border-purple-500/40 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] transition-all duration-500">
@@ -169,7 +219,7 @@ export default function Hero() {
                   </span>
                 </div>
 
-              </div>
+              </motion.div>
 
             </div>
           </motion.div>
