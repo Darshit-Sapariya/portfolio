@@ -1,64 +1,46 @@
-import { Linkedin, Github, Twitter, Mail } from "lucide-react"
+import { FaLinkedinIn, FaGithub, FaXTwitter } from "react-icons/fa6"
+import { Mail } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
+    <footer className="border-t border-border py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          <div>
-            <h3 className="text-lg font-bold mb-4">Darshit Sapariya</h3>
-            <p className="opacity-90">Frontend developer passionate about creating beautiful digital experiences.</p>
-          </div>
-
-          <div>
-            <h4 className="font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2 opacity-90">
-              <li>
-                <a href="#about" className="hover:opacity-100 transition-opacity">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="hover:opacity-100 transition-opacity">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:opacity-100 transition-opacity">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold mb-4">Follow</h4>
-            <div className="flex gap-4">
-              <a
-                href="https://www.linkedin.com/in/sapariya-darshit-47b7b1287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="https://github.com/Darshit-Sapariya"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
-              >
-                <Github size={20} />
-              </a>
-              <a href="mailto: sapariyadarshit3596@gmail.com" className="hover:scale-110 transition-transform">
-                <Mail size={20} />
-              </a>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-white font-bold text-lg">
+              D
             </div>
+            <span className="text-foreground font-semibold">Darshit Sapariya</span>
           </div>
-        </div>
 
-        <div className="border-t border-primary-foreground/20 pt-8 text-center opacity-90">
-          <p>&copy; 2025 Darshit Sapariya. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground order-3 md:order-2">
+            &copy; {new Date().getFullYear()} All rights reserved.
+          </p>
+
+          <div className="flex gap-4 order-2 md:order-3">
+            <a
+              href="https://www.linkedin.com/in/sapariya-darshit-47b7b1287"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+            >
+              <FaLinkedinIn size={16} />
+            </a>
+            <a
+              href="https://github.com/Darshit-Sapariya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+            >
+              <FaGithub size={16} />
+            </a>
+            <a
+              href="mailto:sapariyadarshit3596@gmail.com"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+            >
+              <Mail size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

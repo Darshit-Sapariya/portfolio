@@ -1,5 +1,11 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
-import { Github, ExternalLink } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ArrowUpRight } from "lucide-react"
+
+const categories = ["All", "Web", "UI/UX", "Apps"]
 
 export default function Projects() {
   const projects = [
@@ -10,6 +16,7 @@ export default function Projects() {
       tags: ["React", "Next.js", "Express.js", "MongoDB"],
       links: {
         github: "https://github.com/Darshit-Sapariya/travel-advisor.git",
+        live: "#",
       },
     },
     {
@@ -19,6 +26,7 @@ export default function Projects() {
       tags: ["HTML", "CSS", "bootstrap", "JavaScript", "PHP", "MySQL"],
       links: {
         github: "https://github.com/Darshit-Sapariya/clg_management.git",
+        live: "#",
       },
     },
     {
@@ -34,61 +42,79 @@ export default function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-16 md:py-24 bg-card/50">
+    <section id="works" className="py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12">Projects</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-4">
+            My Recent Works
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Turning ideas into unique web projects that inspire both you and your customers.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-background rounded-lg overflow-hidden border border-border hover:shadow-lg transition-shadow"
-            >
-              <div className="relative w-full h-48 overflow-hidden">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform"
-                />
-              </div>
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex items-center gap-1 bg-card rounded-full p-1.5 border border-border">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeFilter === cat
+                    ? "gradient-primary text-white"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
 
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-foreground mb-2">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
-                      {tag}
-                    </span>
-                  ))}
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="group relative rounded-xl overflow-hidden bg-card border border-border"
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                <div className="flex gap-2">
+                <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                   <a
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition-colors text-sm font-medium"
+                    className="block p-4 rounded-xl bg-gradient-to-r from-primary to-purple-600 text-white"
                   >
-                    <Github size={16} />
-                    Code
-                  </a>
-                  <a
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2 border border-primary text-primary rounded hover:bg-primary/10 transition-colors text-sm font-medium"
-                  >
-                    <ExternalLink size={16} />
-                    Live
+                    <h3 className="text-xl font-bold mb-1">{project.title}</h3>
+                    <p className="text-sm text-white/80">{project.description}</p>
+                    <ArrowUpRight className="absolute top-1/2 right-6 -translate-y-1/2" size={20} />
                   </a>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   )

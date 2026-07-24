@@ -1,75 +1,103 @@
 "use client"
 
-import { useState } from "react"
-import { Menu, X, Moon } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+
+const navItems = [
+  { label: "Services", href: "#services" },
+  { label: "Works", href: "#works" },
+  { label: "Resume", href: "#resume" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
+]
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Internship", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
-  ]
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div className="text-xl font-bold text-foreground">Darshit Sapariya</div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-8 items-center">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              {item.label}
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            <a href="#" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-white font-bold text-lg">
+                D
+              </div>
+              <span className="hidden sm:block text-foreground font-semibold">Darshit Sapariya</span>
             </a>
-          ))}
-          <a
-            href="#resume"
-            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
-          >
-            Resume
-          </a>
-          <button className="text-foreground hover:text-primary transition-colors">
-            <Moon size={20} />
-          </button>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-foreground" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden">
-            <div className="flex flex-col gap-4 p-4">
+            <nav className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors group"
+                >
+                  {item.label}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 gradient-primary rounded-full transition-all duration-300 group-hover:w-3/4" />
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="ml-4 px-6 py-2.5 text-sm font-bold text-white rounded-full gradient-secondary hover:opacity-90 transition-all duration-300 hover:scale-105"
+              >
+                Hire Me!
+              </a>
+            </nav>
+
+            <button
+              className="lg:hidden text-foreground p-2"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-16 left-0 right-0 z-40 bg-background/98 backdrop-blur-md border-b border-border lg:hidden"
+          >
+            <nav className="flex flex-col p-6 gap-3">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
                   onClick={() => setIsOpen(false)}
+                  className="text-lg text-foreground/80 hover:text-foreground transition-colors py-2"
                 >
                   {item.label}
                 </a>
               ))}
               <a
-                href="#resume"
-                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                href="#contact"
                 onClick={() => setIsOpen(false)}
+                className="mt-2 px-6 py-3 text-sm font-bold text-white rounded-full gradient-secondary text-center"
               >
-                Resume
+                Hire Me!
               </a>
-            </div>
-          </div>
+            </nav>
+          </motion.div>
         )}
-      </nav>
-    </header>
+      </AnimatePresence>
+    </>
   )
 }

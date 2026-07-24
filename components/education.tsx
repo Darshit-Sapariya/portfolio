@@ -1,39 +1,63 @@
+"use client"
+
+import { motion } from "framer-motion"
+
+const educationList = [
+  {
+    period: "2023 - 2026",
+    degree: "Bachelor of Engineering",
+    specialization: "Computer Engineering",
+    school: "Sal College of Engineering (GTU)",
+    status: "Pursuing",
+  },
+  {
+    period: "2020 - 2023",
+    degree: "Diploma in Computer Engineering",
+    specialization: "",
+    school: "Government Polytechnic, Gandhinagar (GTU)",
+    status: "CGPA: 7.99",
+  },
+]
+
 export default function Education() {
-  const education = [
-    {
-      degree: "Bachelor of Engineering in Computer Engineering",
-      school: "Sal College of Engineering (GTU)",
-      period: "2023 - 2026 (Pursuing)",
-      cgpa: "",
-    },
-    {
-      degree: "Diploma in Computer Engineering (CGPA: 7.99)",
-      school: "Government Polytechnic, Gandhinagar (GTU)",
-      period: "2020 - 2023",
-      cgpa: "CGPA: 7.99",
-    }
-    
-  ]
-
   return (
-    <section id="education" className="py-16 md:py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-foreground mb-12 text-center">Education</h2>
+    <div>
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="text-2xl md:text-3xl font-bold gradient-text mb-8 flex items-center gap-3">
+          <span className="text-2xl">🎓</span> My Education
+        </h2>
+      </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-6">
-          {education.map((edu, index) => (
-            <div
-              key={index}
-              className="bg-card rounded-lg p-6 md:p-8 border border-border hover:border-primary/50 transition-colors"
-            >
-              <h3 className="text-xl font-semibold text-primary mb-2">{edu.degree}</h3>
-              <p className="text-foreground font-medium mb-2">{edu.school}</p>
-              <p className="text-muted-foreground text-sm">{edu.period}</p>
-              {edu.cgpa && <p className="text-muted-foreground text-sm">{edu.cgpa}</p>}
+      <div className="flex flex-col gap-6">
+        {educationList.map((edu, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+            className="group relative p-6 md:p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-l from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+            <div className="relative z-10">
+              <p className="text-primary font-bold text-sm md:text-base mb-2 transition-colors duration-300">
+                {edu.period}
+              </p>
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-1 uppercase">
+                {edu.degree}
+                {edu.specialization ? ` - ${edu.specialization}` : ""}
+              </h3>
+              <p className="text-muted-foreground text-sm mb-1">{edu.school}</p>
+              <p className="text-muted-foreground text-sm">{edu.status}</p>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
   )
 }

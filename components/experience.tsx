@@ -1,55 +1,55 @@
+"use client"
+
+import { motion } from "framer-motion"
+
+const experiences = [
+  {
+    duration: "Summer 2024 (15 Days)",
+    role: "Web Development Intern",
+    company: "CreArt Solutions Pvt. Ltd.",
+    description:
+      "Gained hands-on experience with HTML, CSS, and JavaScript. Learned about MERN stack fundamentals, version control with Git/GitHub, and code review best practices.",
+  },
+]
+
 export default function Experience() {
-  const experiences = [
-    {
-      duration: "Summer 2024 (15 Days)",
-      role: "Web Development Intern",
-      company: "CreArt Solutions Pvt. Ltd.",
-      achievements: [
-        "Gained hands-on experience with HTML, CSS, and JavaScript by assisting senior developers with UI tasks.",
-        "Observed and learned from code reviews, gaining insight into best practices and code quality standards.",
-         "Learned about MERN stack, where I learned the fundamentals of building full-stack web applications. Gained hands-on experience with MongoDB, Express.js, React, and Node.js, including creating APIs, managing data, and developing responsive UI components.",
-        "Learned about version control using Git and GitHub.",
-      ],
-    },
-  ]
-
   return (
-    <section id="experience" className="py-16 md:py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-foreground mb-12 text-center">Internship Experience</h2>
+    <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="text-2xl md:text-3xl font-bold gradient-text mb-8 flex items-center gap-3">
+          <span className="text-2xl">💼</span> My Experience
+        </h2>
+      </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          {experiences.map((exp, index) => (
-            <div key={index}>
-              {/* Timeline dot */}
-              <div className="flex gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 bg-primary rounded-full mt-2"></div>
-                </div>
-
-                {/* Content card */}
-                <div className="pb-8 flex-1">
-                  <div className="bg-card rounded-lg p-6 md:p-8 border border-border">
-                    <p className="text-sm text-muted-foreground mb-2">{exp.duration}</p>
-                    <h3 className="text-xl font-bold text-foreground mb-1">{exp.role}</h3>
-                    <p className="text-primary font-medium mb-4">{exp.company}</p>
-
-                    {/* Achievements as bullet points */}
-                    <ul className="space-y-2">
-                      {exp.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex gap-3 text-muted-foreground text-sm">
-                          <span className="text-primary mt-1">•</span>
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
+      <div className="flex flex-col gap-6">
+        {experiences.map((exp, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+            className="group relative p-6 md:p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+            <div className="relative z-10">
+              <p className="text-primary font-bold text-sm md:text-base mb-2 transition-colors duration-300">
+                {exp.duration}
+              </p>
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-1 uppercase">
+                {exp.role}
+              </h3>
+              <p className="text-muted-foreground text-sm mb-3">{exp.company}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">{exp.description}</p>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
   )
 }
