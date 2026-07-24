@@ -5,40 +5,40 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 
-const categories = ["All", "Web", "UI/UX", "Apps"]
+const categories = ["All", "Django", "Full-Stack", "Web"]
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All")
 
   const projects = [
     {
-      title: "Travel-planner ",
-      category: "Web",
-      description: "Full-stack application with, Register And Login , Create Trip , Add places .",
+      title: "Travel Planner",
+      category: "Full-Stack",
+      description: "Full-stack trip planning app with user auth, location searches, and PostgreSQL integration.",
       image: "/Travel.jpg",
-      tags: ["React", "Next.js", "Express.js", "MongoDB"],
+      tags: ["Python", "Django", "React", "PostgreSQL", "DRF"],
       links: {
         github: "https://github.com/Darshit-Sapariya/travel-advisor.git",
         live: "#",
       },
     },
     {
-      title: "Collage Management System",
-      category: "Web",
-      description: "Collaborative task management tool with real-time updates and team collaboration features.",
+      title: "College Management System",
+      category: "Django",
+      description: "Collaborative portal for class scheduling, grade management, and student profiles.",
       image: "/clg.png",
-      tags: ["HTML", "CSS", "bootstrap", "JavaScript", "PHP", "MySQL"],
+      tags: ["Python", "Django", "MySQL", "Bootstrap"],
       links: {
         github: "https://github.com/Darshit-Sapariya/clg_management.git",
         live: "#",
       },
     },
     {
-      title: "Portfolio Website",
-      category: "UI/UX",
-      description: "Modern portfolio website built with react featuring smooth animations and responsive design.",
+      title: "Developer Portfolio Website",
+      category: "Web",
+      description: "Responsive portfolio featuring clean animations, projects filtering, and WhatsApp chat support.",
       image: "/portfolio.png",
-      tags: ["React", "+", "AI"],
+      tags: ["React", "Next.js", "Tailwind", "Framer Motion"],
       links: {
         github: "#",
         live: "#",

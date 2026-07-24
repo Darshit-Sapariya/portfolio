@@ -16,13 +16,12 @@ export default function About() {
             About Me
           </h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-4">
-            I&apos;m an aspiring frontend developer with a strong passion for building clean, beautiful, and functional web applications. 
-            My journey into programming began with a simple &ldquo;Hello, World!&rdquo; and has grown into a dedication to mastering modern web technologies.
+            I&apos;m an aspiring Full-Stack Developer specializing in Python and the Django framework. I have a passion for designing scalable backends, building robust REST APIs using Django Rest Framework (DRF), and connecting them with interactive frontends.
           </p>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-4">
-            I am a proactive learner, always exploring new tools and approaches to improve my skills. 
-            I&apos;m currently looking for an internship or entry-level job where I can contribute to real projects, 
-            learn from experienced mentors, and move forward confidently in my career as a software developer.
+            I am a proactive learner, always exploring new database designs, caching mechanisms, and system optimization techniques. 
+            I&apos;m currently looking for an internship or entry-level job where I can contribute to backend and full-stack projects, 
+            learn from experienced mentors, and build solid, high-performance web applications.
           </p>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
             I am currently pursuing my B.E. in Information Technology, which I will complete in 2026.

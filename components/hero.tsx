@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { FaXTwitter, FaLinkedinIn, FaGithub, FaDribbble } from "react-icons/fa6"
+import { FaXTwitter, FaLinkedinIn, FaGithub, FaDribbble, FaWhatsapp } from "react-icons/fa6"
 import { Download } from "lucide-react"
 
 export default function Hero() {
@@ -40,10 +40,11 @@ export default function Hero() {
   }, [])
 
   const socialLinks = [
-    { icon: FaXTwitter, href: "#" },
-    { icon: FaDribbble, href: "#" },
+    { icon: FaWhatsapp, href: "https://wa.me/918347402205?text=Hi%20Darshit,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" },
     { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/sapariya-darshit-47b7b1287" },
     { icon: FaGithub, href: "https://github.com/Darshit-Sapariya" },
+    { icon: FaXTwitter, href: "#" },
+    { icon: FaDribbble, href: "#" },
   ]
 
   return (
@@ -76,13 +77,13 @@ export default function Hero() {
               I am Darshit
             </h4>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-              <span className="gradient-text">Frontend</span>
+              <span className="gradient-text">Full-Stack</span>
               <br />
-              Developer.
+              Python Django Dev.
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
-              A passionate frontend developer focused on building clean, beautiful, and functional web applications that connect people.
+              A passionate Full-Stack Developer specializing in Python, Django, REST APIs, and modern frontend technologies to build scalable web applications.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 mb-10">

@@ -1,17 +1,18 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaAngular, FaGitAlt } from "react-icons/fa"
-import { SiTailwindcss, SiTypescript, SiNextdotjs } from "react-icons/si"
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaGitAlt, FaPython } from "react-icons/fa"
+import { SiTailwindcss, SiTypescript, SiNextdotjs, SiDjango, SiPostgresql, SiCelery, SiRedis } from "react-icons/si"
 
 const skills = [
-  { name: "HTML5", icon: FaHtml5, level: 90, color: "from-orange-500 to-orange-600" },
-  { name: "CSS3", icon: FaCss3Alt, level: 85, color: "from-blue-500 to-blue-600" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, level: 82, color: "from-cyan-400 to-blue-500" },
+  { name: "Python", icon: FaPython, level: 85, color: "from-blue-500 to-yellow-500" },
+  { name: "Django", icon: SiDjango, level: 82, color: "from-green-600 to-emerald-800" },
+  { name: "PostgreSQL", icon: SiPostgresql, level: 78, color: "from-blue-400 to-blue-700" },
+  { name: "Celery", icon: SiCelery, level: 70, color: "from-green-400 to-lime-600" },
+  { name: "Redis", icon: SiRedis, level: 75, color: "from-red-500 to-red-700" },
   { name: "JavaScript", icon: FaJsSquare, level: 78, color: "from-yellow-400 to-yellow-600" },
   { name: "React", icon: FaReact, level: 75, color: "from-blue-300 to-blue-600" },
   { name: "Next.js", icon: SiNextdotjs, level: 70, color: "from-gray-500 to-gray-700" },
-  { name: "Angular", icon: FaAngular, level: 65, color: "from-red-500 to-red-700" },
   { name: "TypeScript", icon: SiTypescript, level: 68, color: "from-blue-600 to-blue-800" },
   { name: "Git", icon: FaGitAlt, level: 80, color: "from-orange-500 to-red-600" },
 ]

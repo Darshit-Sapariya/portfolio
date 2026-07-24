@@ -5,10 +5,10 @@ import { motion } from "framer-motion"
 const experiences = [
   {
     duration: "Summer 2024 (15 Days)",
-    role: "Web Development Intern",
+    role: "Full-Stack Developer Intern",
     company: "CreArt Solutions Pvt. Ltd.",
     description:
-      "Gained hands-on experience with HTML, CSS, and JavaScript. Learned about MERN stack fundamentals, version control with Git/GitHub, and code review best practices.",
+      "Gained hands-on experience with Python, Django, REST APIs, and Git version control. Assisted in database design using MySQL, and integrated backend APIs with interactive frontend interfaces.",
   },
 ]
 

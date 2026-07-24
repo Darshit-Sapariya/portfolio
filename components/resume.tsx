@@ -34,10 +34,10 @@ export default function Resume() {
 
             <div className="space-y-3.5 mb-10">
               {[
-                "Frontend development with React, Next.js, Angular",
-                "Full-stack projects with MERN stack & Node.js",
-                "Strong problem-solving, UI/UX design & teamwork skills",
-                "IT student with solid technical foundation & quick learning",
+                "Backend web development with Python and Django",
+                "Robust REST APIs with Django REST Framework (DRF)",
+                "Relational database design (PostgreSQL / MySQL / SQLite)",
+                "Full-stack integration using React, Next.js, and Bootstrap",
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-sm text-foreground/80">
                   <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
@@ -89,7 +89,7 @@ export default function Resume() {
                     </div>
                     <div>
                       <h3 className="font-bold text-foreground text-lg">Darshit Sapariya</h3>
-                      <p className="text-xs text-muted-foreground">Full-Stack Developer</p>
+                      <p className="text-xs text-muted-foreground">Full-Stack Python Django Developer</p>
                     </div>
                   </div>
                   <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20">
@@ -106,7 +106,7 @@ export default function Resume() {
                       <span>About Me</span>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
-                      Passionate Web Developer specializing in building modern, scalable React & Next.js applications.
+                      Passionate Developer specializing in building modern web backends with Django and REST APIs.
                     </p>
                   </div>
 
@@ -117,7 +117,7 @@ export default function Resume() {
                       <span>Core Technologies</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
-                      {["React", "Next.js", "TypeScript", "Node.js", "Tailwind", "MongoDB"].map((tech) => (
+                      {["Python", "Django", "DRF", "PostgreSQL", "React", "Git"].map((tech) => (
                         <span key={tech} className="px-2 py-0.5 rounded-md bg-background text-[11px] text-foreground/80 border border-border/60">
                           {tech}
                         </span>
@@ -132,16 +132,16 @@ export default function Resume() {
                         <Briefcase size={13} />
                         <span>Experience</span>
                       </div>
-                      <p className="text-[11px] font-medium text-foreground">Web Developer</p>
-                      <p className="text-[10px] text-muted-foreground">Projects & Internships</p>
+                      <p className="text-[11px] font-medium text-foreground">Backend Intern</p>
+                      <p className="text-[10px] text-muted-foreground">CreArt Solutions</p>
                     </div>
                     <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
                       <div className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400 mb-1">
                         <GraduationCap size={13} />
                         <span>Education</span>
                       </div>
-                      <p className="text-[11px] font-medium text-foreground">B.Tech / IT</p>
-                      <p className="text-[10px] text-muted-foreground">Computer Science</p>
+                      <p className="text-[11px] font-medium text-foreground">B.E. / IT</p>
+                      <p className="text-[10px] text-muted-foreground">Information Tech.</p>
                     </div>
                   </div>
                 </div>

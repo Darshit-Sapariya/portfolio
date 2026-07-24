@@ -6,27 +6,27 @@ import { ArrowUpRight } from "lucide-react"
 const services = [
   {
     id: "01",
-    title: "Web Development",
+    title: "Backend Development",
     description:
-      "Custom website development using modern frameworks like React, Next.js, and Angular with responsive design.",
+      "Creating robust and scalable backend systems using Python, Django, and Django REST Framework (DRF).",
   },
   {
     id: "02",
-    title: "UI/UX Design",
+    title: "Database Design & SQL",
     description:
-      "Creating intuitive and engaging user experiences through clean design principles and attention to detail.",
+      "Designing efficient database schemas, query optimization, and management using PostgreSQL, MySQL, and SQLite.",
   },
   {
     id: "03",
-    title: "API Integration",
+    title: "API Development & Integration",
     description:
-      "Building and integrating APIs to connect websites with third-party applications and services.",
+      "Building secure, standardized REST APIs and integrating with third-party web services and applications.",
   },
   {
     id: "04",
-    title: "CMS Development",
+    title: "Full-Stack Web Applications",
     description:
-      "Setting up user-friendly content management solutions so clients can manage content easily.",
+      "Developing complete web applications by connecting Django backends with React/Next.js/HTML/CSS frontends.",
   },
 ]
 
