@@ -9,6 +9,7 @@ import Skills from "@/components/skills"
 import Resume from "@/components/resume"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import WhatsAppButton from "@/components/whatsapp"
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <Resume />
       <Contact />
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }

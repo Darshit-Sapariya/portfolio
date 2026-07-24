@@ -4,6 +4,7 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Mail, Phone, MapPin, ArrowUpRight, Loader2, CheckCircle2, XCircle, X } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa6"
 import emailjs from "emailjs-com"
 
 const contactInfo = [
@@ -18,6 +19,12 @@ const contactInfo = [
     label: "Phone",
     value: "+91 8347402205",
     href: "tel:+918347402205",
+  },
+  {
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+    value: "+91 8347402205",
+    href: "https://wa.me/918347402205?text=Hi%20Darshit,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!",
   },
   {
     icon: MapPin,
@@ -105,7 +112,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {contactInfo.map((info, index) => (
             <motion.div
               key={index}
