@@ -3,8 +3,8 @@
 import type React from "react"
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Mail, Phone, MapPin, ArrowUpRight, Loader2, CheckCircle2, XCircle, X } from "lucide-react"
-import { FaWhatsapp } from "react-icons/fa6"
+import { Mail, Phone, MapPin, ArrowUpRight, Loader2, CheckCircle2, XCircle, X, Clock } from "lucide-react"
+import { FaWhatsapp, FaLinkedinIn, FaGithub } from "react-icons/fa6"
 import emailjs from "emailjs-com"
 
 const contactInfo = [
@@ -95,8 +95,11 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -110,33 +113,50 @@ export default function Contact() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind? Let&apos;s build something great together.
           </p>
+
+          {/* Availability Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Available for Freelance
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground text-xs font-bold uppercase tracking-wider">
+              <Clock size={12} />
+              Response time: &lt; 24 hours
+            </span>
+          </div>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Contact Info Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {contactInfo.map((info, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-6 bg-card rounded-2xl border border-border text-center hover:border-primary/50 transition-all duration-300"
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="group p-5 bg-card/40 rounded-2xl border border-white/5 hover:border-primary/30 text-center transition-all duration-300"
             >
-              <div className="w-14 h-14 mx-auto mb-4 rounded-full gradient-primary flex items-center justify-center">
-                <info.icon className="text-white" size={24} />
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl gradient-primary flex items-center justify-center shadow-md shadow-primary/10">
+                <info.icon className="text-white" size={20} />
               </div>
-              <h3 className="font-bold text-foreground mb-2">{info.label}</h3>
+              <h3 className="font-bold text-foreground text-sm mb-1.5">{info.label}</h3>
               {info.href ? (
-                <a href={info.href} className="text-primary hover:underline text-sm">
+                <a href={info.href} target={info.href.startsWith("http") ? "_blank" : undefined} rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-primary hover:underline text-xs break-all">
                   {info.value}
                 </a>
               ) : (
-                <p className="text-muted-foreground text-sm">{info.value}</p>
+                <p className="text-muted-foreground text-xs">{info.value}</p>
               )}
             </motion.div>
           ))}
         </div>
 
+        {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -145,19 +165,35 @@ export default function Contact() {
           className="max-w-2xl mx-auto relative group"
         >
           {/* Ambient blur behind form */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 pointer-events-none" />
+          <div className="absolute -inset-2 bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition duration-1000 pointer-events-none" />
 
           {/* Form glass card wrapper */}
-          <div className="relative bg-card/65 backdrop-blur-xl border border-border/80 rounded-3xl p-6 sm:p-10 shadow-2xl overflow-hidden">
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+          <div className="relative bg-card/45 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+            {/* Social Icons Row */}
+            <div className="flex items-center justify-center gap-3 mb-8 pb-6 border-b border-white/5">
+              <a href="https://github.com/Darshit-Sapariya" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
+                <FaGithub size={16} />
+              </a>
+              <a href="https://www.linkedin.com/in/sapariya-darshit-47b7b1287" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
+                <FaLinkedinIn size={16} />
+              </a>
+              <a href="https://wa.me/918347402205?text=Hi%20Darshit,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-emerald-400 hover:border-emerald-400 transition-all duration-300">
+                <FaWhatsapp size={16} />
+              </a>
+              <a href="mailto:sapariyadarshit3596@gmail.com" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
+                <Mail size={16} />
+              </a>
+            </div>
+
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300"
+                    className="w-full px-5 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/20 hover:border-white/20 transition-all duration-300 text-sm"
                     required
                     disabled={isSubmitting}
                     suppressHydrationWarning
@@ -169,7 +205,7 @@ export default function Contact() {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300"
+                    className="w-full px-5 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/20 hover:border-white/20 transition-all duration-300 text-sm"
                     required
                     disabled={isSubmitting}
                     suppressHydrationWarning
@@ -182,7 +218,7 @@ export default function Contact() {
                   placeholder="Subject"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300"
+                  className="w-full px-5 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/20 hover:border-white/20 transition-all duration-300 text-sm"
                   required
                   disabled={isSubmitting}
                   suppressHydrationWarning
@@ -194,7 +230,7 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-5 py-4 rounded-xl bg-background/50 border border-border/80 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/80 focus:ring-1 focus:ring-primary/20 hover:bg-background/80 transition-all duration-300 resize-none"
+                  className="w-full px-5 py-4 rounded-xl bg-white/[0.03] border border-white/10 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/20 hover:border-white/20 transition-all duration-300 resize-none text-sm"
                   required
                   disabled={isSubmitting}
                   suppressHydrationWarning
@@ -204,7 +240,7 @@ export default function Contact() {
                 type="submit"
                 disabled={isSubmitting}
                 suppressHydrationWarning
-                className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-75 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-primary/25"
+                className="w-full px-6 py-4 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-75 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-primary/20"
               >
                 {isSubmitting ? (
                   <>
@@ -233,7 +269,7 @@ export default function Contact() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setDialogState({ ...dialogState, open: false })}
-              className="absolute inset-0 bg-background/80 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
             />
 
             {/* Dialog Content */}
@@ -242,22 +278,22 @@ export default function Contact() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", duration: 0.5 }}
-              className="relative w-full max-w-md bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-2xl z-10 text-center"
+              className="relative w-full max-w-md bg-card border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl z-10 text-center"
             >
               <button
                 onClick={() => setDialogState({ ...dialogState, open: false })}
-                className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 transition-colors"
+                className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
               >
                 <X size={18} />
               </button>
 
               <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 {dialogState.type === "success" ? (
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
                     <CheckCircle2 size={36} />
                   </div>
                 ) : (
-                  <div className="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center border border-rose-500/30">
+                  <div className="w-16 h-16 rounded-2xl bg-rose-500/15 text-rose-400 flex items-center justify-center border border-rose-500/20">
                     <XCircle size={36} />
                   </div>
                 )}
@@ -272,7 +308,7 @@ export default function Contact() {
 
               <button
                 onClick={() => setDialogState({ ...dialogState, open: false })}
-                className="w-full py-3 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-md"
+                className="w-full py-3 rounded-xl gradient-secondary text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-md shadow-primary/20"
               >
                 Close
               </button>

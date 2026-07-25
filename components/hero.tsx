@@ -69,40 +69,47 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h4 className="text-lg md:text-xl font-bold text-muted-foreground mb-2">
-              I am Darshit
-            </h4>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-              <span className="gradient-text">Full-Stack</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+              ✨ Available for Internships & Jobs
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
+              Building <span className="gradient-text">Scalable</span>
               <br />
-              Python Django Dev.
+              Backends & APIs
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
-              A passionate Full-Stack Developer specializing in Python, Django, REST APIs, and modern frontend technologies to build scalable web applications.
+              Hi, I'm Darshit Sapariya. I specialize in building high-performance server-side architectures, robust REST APIs, and full-stack solutions using <strong>Python, Django, React, PostgreSQL, and Electron</strong>.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <a
+                href="#contact"
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white rounded-full gradient-secondary hover:opacity-90 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/20"
+              >
+                Let's Connect
+              </a>
+              <a
                 href="/Resume.pdf"
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-primary border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300 group"
+                className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-bold text-foreground border border-white/10 bg-white/5 backdrop-blur-md rounded-full hover:border-primary/50 hover:bg-white/10 transition-all duration-300 hover:scale-105"
               >
                 Download CV
-                <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
+                <Download size={16} />
               </a>
-              <div className="flex gap-3">
+              <div className="flex gap-3 ml-2">
                 {socialLinks.map((link, i) => (
                   <a
                     key={i}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 flex items-center justify-center rounded-full border border-primary/50 text-primary hover:bg-primary hover:text-white transition-all duration-300 text-sm"
+                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary hover:bg-white/10 transition-all duration-300 text-base"
                   >
                     <link.icon />
                   </a>
@@ -110,14 +117,14 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 border-t border-border pt-8">
+            <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
               <div>
-                <span className="text-3xl md:text-4xl font-bold gradient-text">{counts.projects}+</span>
-                <p className="text-sm text-muted-foreground mt-1">Projects Completed</p>
+                <span className="text-4xl md:text-5xl font-extrabold gradient-text">{counts.projects}+</span>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mt-2">Projects Completed</p>
               </div>
               <div>
-                <span className="text-3xl md:text-4xl font-bold gradient-text">{counts.experience}+</span>
-                <p className="text-sm text-muted-foreground mt-1">Years Learning</p>
+                <span className="text-4xl md:text-5xl font-extrabold gradient-text">{counts.experience}+</span>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mt-2">Years Learning</p>
               </div>
             </div>
           </motion.div>
