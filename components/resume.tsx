@@ -2,15 +2,9 @@
 
 import { motion } from "framer-motion"
 import { Download, Check, FileText, ExternalLink, Sparkles, User, Briefcase, GraduationCap, Code } from "lucide-react"
+import { siteConfig, resumeHighlights } from "@/lib/data"
 
 export default function Resume() {
-  const highlights = [
-    "Backend web development with Python and Django",
-    "Robust REST APIs with Django REST Framework (DRF)",
-    "Relational database design (PostgreSQL / MySQL / SQLite)",
-    "Full-stack integration using React, Next.js, and Bootstrap",
-  ]
-
   return (
     <section id="resume" className="py-20 md:py-32 relative overflow-hidden">
       {/* Background Glow */}
@@ -53,7 +47,7 @@ export default function Resume() {
             </h3>
 
             <div className="space-y-4 mb-10">
-              {highlights.map((item, i) => (
+              {resumeHighlights.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -15 }}
@@ -73,7 +67,7 @@ export default function Resume() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="/Resume.pdf"
+                href={siteConfig.resume}
                 download
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full gradient-secondary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-all duration-300 hover:scale-105"
               >
@@ -81,7 +75,7 @@ export default function Resume() {
                 Download CV (PDF)
               </a>
               <a
-                href="/Resume.pdf"
+                href={siteConfig.resume}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-foreground font-bold text-sm hover:border-primary/50 hover:bg-white/10 transition-all duration-300"
@@ -117,8 +111,8 @@ export default function Resume() {
                       DS
                     </div>
                     <div>
-                      <h4 className="font-bold text-foreground text-base">Darshit Sapariya</h4>
-                      <p className="text-xs text-muted-foreground">Full-Stack Python Django Developer</p>
+                      <h4 className="font-bold text-foreground text-base">{siteConfig.name}</h4>
+                      <p className="text-xs text-muted-foreground">{siteConfig.title}</p>
                     </div>
                   </div>
                   <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/20 uppercase tracking-wider">
@@ -170,7 +164,7 @@ export default function Resume() {
                         <span>Education</span>
                       </div>
                       <p className="text-[11px] font-semibold text-foreground">B.E. / IT</p>
-                      <p className="text-[10px] text-muted-foreground">Computer Engineering</p>
+                      <p className="text-[10px] text-muted-foreground">Information Technology</p>
                     </div>
                   </div>
                 </div>
@@ -186,7 +180,7 @@ export default function Resume() {
                   </p>
                   <div className="flex items-center gap-3 mt-1">
                     <a
-                      href="/Resume.pdf"
+                      href={siteConfig.resume}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-6 py-2.5 rounded-full border border-white/10 bg-white/5 text-white text-xs font-bold hover:bg-white/10 transition-all duration-300 flex items-center gap-1.5"
@@ -195,7 +189,7 @@ export default function Resume() {
                       View
                     </a>
                     <a
-                      href="/Resume.pdf"
+                      href={siteConfig.resume}
                       download
                       className="px-6 py-2.5 rounded-full gradient-secondary text-white text-xs font-bold hover:opacity-90 transition-all duration-300 shadow-md shadow-primary/20 flex items-center gap-1.5"
                     >

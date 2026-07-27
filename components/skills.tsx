@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FaGitAlt, FaPython, FaHtml5, FaCss3Alt, FaJsSquare, FaServer } from "react-icons/fa"
-import { SiTailwindcss, SiNextdotjs, SiDjango, SiPostgresql, SiDocker, SiElectron, SiMysql, SiSqlite, SiBootstrap } from "react-icons/si"
+import { FaPython, FaHtml5, FaCss3Alt, FaJsSquare, FaServer, FaGithub } from "react-icons/fa"
+import { SiTailwindcss, SiDjango, SiPostgresql, SiElectron, SiMysql, SiSqlite, SiBootstrap } from "react-icons/si"
+import { Sparkles, Bot, Terminal, Code2 } from "lucide-react"
 
 const skillsData = [
   {
@@ -10,7 +11,7 @@ const skillsData = [
     skills: [
       { name: "Python", icon: FaPython, color: "text-blue-400 border-blue-500/10 bg-blue-500/5" },
       { name: "Django", icon: SiDjango, color: "text-emerald-400 border-emerald-500/10 bg-emerald-500/5" },
-      { name: "DRF", icon: FaServer, color: "text-purple-400 border-purple-500/10 bg-purple-500/5" },
+      { name: "DRF (REST API)", icon: FaServer, color: "text-purple-400 border-purple-500/10 bg-purple-500/5" },
     ],
   },
   {
@@ -20,7 +21,7 @@ const skillsData = [
       { name: "CSS3", icon: FaCss3Alt, color: "text-blue-400 border-blue-500/10 bg-blue-500/5" },
       { name: "JavaScript", icon: FaJsSquare, color: "text-yellow-400 border-yellow-500/10 bg-yellow-500/5" },
       { name: "Bootstrap", icon: SiBootstrap, color: "text-purple-400 border-purple-500/10 bg-purple-500/5" },
-      { name: "Tailwind", icon: SiTailwindcss, color: "text-teal-400 border-teal-500/10 bg-teal-500/5" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-400 border-teal-500/10 bg-teal-500/5" },
     ],
   },
   {
@@ -32,10 +33,19 @@ const skillsData = [
     ],
   },
   {
-    category: "Tools & OS",
+    category: "Developer Tools",
     skills: [
-      { name: "Git", icon: FaGitAlt, color: "text-orange-500 border-orange-500/10 bg-orange-500/5" },
+      { name: "Git & GitHub", icon: FaGithub, color: "text-orange-400 border-orange-500/10 bg-orange-500/5" },
       { name: "Electron", icon: SiElectron, color: "text-sky-400 border-sky-500/10 bg-sky-500/5" },
+      { name: "VS Code", icon: Code2, color: "text-blue-400 border-blue-500/10 bg-blue-500/5" },
+    ],
+  },
+  {
+    category: "AI Coding Platforms & Agents",
+    skills: [
+      { name: "Antigravity", icon: Sparkles, color: "text-purple-400 border-purple-500/10 bg-purple-500/5" },
+      { name: "OpenCode", icon: Terminal, color: "text-emerald-400 border-emerald-500/10 bg-emerald-500/5" },
+      { name: "Claude Code", icon: Bot, color: "text-amber-400 border-amber-500/10 bg-amber-500/5" },
     ],
   },
 ]

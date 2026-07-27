@@ -1,46 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Briefcase, Calendar, MapPin, Award, ExternalLink, Building2, Layers } from "lucide-react"
-
-const experiences = [
-  {
-    duration: "Jan 2026 – Apr 2026",
-    durationBadge: "3 Months",
-    role: "Python Developer Intern",
-    company: "Sparks To Ideas",
-    initials: "SI",
-    location: "Ahmedabad, India",
-    type: "Internship",
-    tags: ["Python", "Django", "DRF", "SQLite", "Razorpay", "OAuth"],
-    description:
-      "Engineered and deployed the eBharatTender platform — a government tender management system. Developed role-based authentication (Admin/Creator/Bidder), Google OAuth login, Razorpay payment gateway, and automated PDF receipt generation.",
-    certificate: "/Sparks_To_Ideas_Certificate.png",
-    iconBg: "from-indigo-600 to-purple-600",
-    borderAccent: "hover:border-indigo-500/30",
-    dotBorder: "border-indigo-500/60",
-    dotText: "text-indigo-400",
-    tagLine: "from-indigo-500/60 via-purple-500/40 to-transparent",
-  },
-  {
-    duration: "Summer 2024",
-    durationBadge: "15 Days",
-    role: "Full-Stack Developer Intern",
-    company: "CreArt Solutions Pvt. Ltd.",
-    initials: "CA",
-    location: "Ahmedabad, India",
-    type: "MERN Stack",
-    tags: ["MongoDB", "Express.js", "React", "Node.js", "REST API"],
-    description:
-      "Worked on the MERN stack, building responsive React UIs, RESTful APIs with Express and Node.js, and MongoDB database schema design for real-world web applications.",
-    certificate: "/CreArt_Solutions_Certificate.png",
-    iconBg: "from-cyan-600 to-blue-600",
-    borderAccent: "hover:border-cyan-500/30",
-    dotBorder: "border-cyan-500/60",
-    dotText: "text-cyan-400",
-    tagLine: "from-cyan-500/60 via-blue-500/40 to-transparent",
-  },
-]
+import { Briefcase, Calendar, MapPin, Award, ExternalLink, Building2 } from "lucide-react"
+import { experiences } from "@/lib/data"
 
 export default function Experience() {
   return (

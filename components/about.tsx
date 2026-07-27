@@ -1,16 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { siteConfig, quickFacts, aboutBullets } from "@/lib/data"
 
 export default function About() {
-  const quickFacts = [
-    { label: "Experience", value: "2+ Years (Learning & Internships)" },
-    { label: "Education", value: "B.E. in Computer Engineering (2026)" },
-    { label: "Core Tech", value: "Python, Django, REST APIs, React, PostgreSQL" },
-    { label: "Location", value: "Ahmedabad, Gujarat, India" },
-    { label: "Availability", value: "Open for Jobs & Internships" },
-  ]
-
   return (
     <section id="about" className="py-20 md:py-32 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +31,7 @@ export default function About() {
             className="md:col-span-7 space-y-6"
           >
             <h3 className="text-xl md:text-2xl font-bold text-foreground">
-              A Passionate Full-Stack Python Django Developer
+              A Passionate {siteConfig.title}
             </h3>
             
             <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
@@ -46,11 +39,7 @@ export default function About() {
             </p>
 
             <ul className="space-y-4">
-              {[
-                "Proactive learner continually researching caching solutions, advanced query optimization, and system performance.",
-                "Eager to contribute to collaborative backend and full-stack software development projects.",
-                "Keen eye for detail, ensuring clean data models, optimized databases, and clean codebase structures.",
-              ].map((bullet, i) => (
+              {aboutBullets.map((bullet, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm md:text-base text-muted-foreground">
                   <span className="text-primary font-bold mt-1">⚡</span>
                   <span>{bullet}</span>

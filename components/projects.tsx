@@ -2,109 +2,22 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { ArrowUpRight, Github, ExternalLink, BookOpen, X, Code, Database, Shield, Star, Award } from "lucide-react"
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
+import { Github, ExternalLink, BookOpen, X, Code, Database, Shield, Star, Award } from "lucide-react"
+import { projects as allProjects } from "@/lib/data"
 
 const categories = ["All", "Desktop", "Web"]
 
-interface Project {
-  title: string
-  category: string
-  displayCategory: string
-  status: string
-  description: string
-  image: string
-  tags: string[]
-  highlights: string[]
-  isFeatured: boolean
-  certificate?: string
-  links: {
-    github: string
-    live: string
-  }
-  caseStudy: {
-    problem: string
-    solution: string
-    features: string[]
-    architecture: string
-  }
-}
+type Project = (typeof allProjects)[0]
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All")
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  const projects: Project[] = [
-    {
-      title: "Vyaparix",
-      category: "Desktop",
-      displayCategory: "Desktop Business Management Software",
-      status: "Completed",
-      isFeatured: true,
-      description: "Vyaparix is a desktop business management and billing software developed for small and medium businesses. It helps manage invoices, inventory, customers, suppliers, purchases, sales, GST billing, and business reports through a clean and easy-to-use interface.",
-      image: "/Project_vyaparix_logo.png",
-      tags: ["Python", "Django", "Tailwind CSS", "SQLite", "Electron", "HTML", "CSS", "JavaScript"],
-      highlights: [
-        "Converted Django web application into a desktop application using Electron.",
-        "Designed for real business usage.",
-        "Optimized for fast performance and clean UI."
-      ],
-      links: {
-        github: "https://github.com/Darshit-Sapariya/Vyaparix",
-        live: "https://vyaparix.store/",
-      },
-      caseStudy: {
-        problem: "Small and medium businesses needed an offline-first, high-performance desktop application for seamless invoice generation, GST billing, and real-time inventory tracking without complex web deployment overhead.",
-        solution: "Developed a secure Django backend coupled with SQLite for local data persistence, and wrapped the application using Electron to deliver a native desktop experience with responsive Tailwind CSS components.",
-        features: [
-          "Professional GST Invoice Generation & PDF Export",
-          "Real-time Inventory & Stock Management",
-          "Comprehensive Customer & Supplier Portals",
-          "Purchase & Sales Order Management with full Reporting",
-          "Multiple customizable invoice templates",
-          "Business Dashboard with graphs & analytics"
-        ],
-        architecture: "Electron Desktop App ↔ Django Backend (Python) ↔ SQLite Local Database"
-      }
-    },
-    {
-      title: "eBharatTender",
-      category: "Web",
-      displayCategory: "Government Tender Management System",
-      status: "Completed",
-      isFeatured: true,
-      description: "eBharatTender is a government tender management platform that simplifies publishing, searching, applying, and managing tenders. The platform supports different user roles with secure authentication and an organized workflow.",
-      image: "/Project_ebharattender_logo.png",
-      tags: ["Python", "Django", "Django REST Framework", "Bootstrap", "SQLite", "HTML", "CSS", "JavaScript"],
-      highlights: [
-        "Developed during 3-month Internship at Sparks To Ideas.",
-        "Integrated role-based workflow, Google OAuth login, and Razorpay gateway.",
-        "Built using Django best practices with scalable MVT architecture."
-      ],
-      certificate: "/Sparks_To_Ideas_Certificate.png",
-      links: {
-        github: "https://github.com/Darshit-Sapariya/ebharatTender",
-        live: "https://ebharattender.onrender.com/",
-      },
-      caseStudy: {
-        problem: "Simplifying the process of publishing, searching, and bidding on government tenders while maintaining role security and payment processing integrity.",
-        solution: "Engineered a secure Django platform with distinct roles (Admin, Creator, Bidder), integrated Google OAuth for secure login, integrated Razorpay for EMD payment management, and implemented automated PDF receipt generation.",
-        features: [
-          "Role-based access control (Admin, Tender Creator, Bidder)",
-          "Advanced tender search and multi-parameter filters",
-          "Google OAuth authentication and Razorpay payment integration",
-          "EMD (Earnest Money Deposit) management and PDF report generation",
-          "Dashboard & analytics for bidding activity"
-        ],
-        architecture: "Django MVT & REST Framework (Python) ↔ Razorpay API ↔ SQLite Database"
-      }
-    }
-  ]
-
   const filteredProjects =
     activeFilter === "All"
-      ? projects
-      : projects.filter(
+      ? allProjects
+      : allProjects.filter(
           (project) =>
             project.category === activeFilter ||
             project.tags.some((tag) => tag.toLowerCase() === activeFilter.toLowerCase())

@@ -1,44 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
-
-import { Server, Database, Code, Layout } from "lucide-react"
-
-const services = [
-  {
-    id: "01",
-    title: "Backend Development",
-    icon: Server,
-    color: "text-blue-400 border-blue-500/20 bg-blue-500/5",
-    description:
-      "Creating robust, secure, and scalable backend systems using Python, Django, and Django REST Framework (DRF).",
-  },
-  {
-    id: "02",
-    title: "Database Design & SQL",
-    icon: Database,
-    color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
-    description:
-      "Designing efficient database schemas, query optimization, indexing, and management using PostgreSQL, MySQL, and SQLite.",
-  },
-  {
-    id: "03",
-    title: "API Design & Integration",
-    icon: Code,
-    color: "text-purple-400 border-purple-500/20 bg-purple-500/5",
-    description:
-      "Building standardized, clean, and well-documented REST APIs and integrating with third-party web services.",
-  },
-  {
-    id: "04",
-    title: "Full-Stack Applications",
-    icon: Layout,
-    color: "text-pink-400 border-pink-500/20 bg-pink-500/5",
-    description:
-      "Developing complete web applications by connecting Django backends with React/Next.js and modern styling frameworks.",
-  },
-]
+import { services } from "@/lib/data"
 
 export default function Services() {
   return (
@@ -93,9 +56,6 @@ export default function Services() {
                 <div className="flex items-center justify-between border-t border-white/5 pt-4">
                   <span className="text-sm font-mono text-muted-foreground">
                     SERVICE {service.id}
-                  </span>
-                  <span className="text-xs font-bold text-primary group-hover:text-white uppercase tracking-wider flex items-center gap-1 transition-colors">
-                    Learn More <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </span>
                 </div>
               </motion.div>

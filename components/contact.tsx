@@ -3,36 +3,10 @@
 import type React from "react"
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Mail, Phone, MapPin, ArrowUpRight, Loader2, CheckCircle2, XCircle, X, Clock } from "lucide-react"
+import { Mail, ArrowUpRight, Loader2, CheckCircle2, XCircle, X, Clock } from "lucide-react"
 import { FaWhatsapp, FaLinkedinIn, FaGithub } from "react-icons/fa6"
 import emailjs from "emailjs-com"
-
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "sapariyadarshit3596@gmail.com",
-    href: "mailto:sapariyadarshit3596@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 8347402205",
-    href: "tel:+918347402205",
-  },
-  {
-    icon: FaWhatsapp,
-    label: "WhatsApp",
-    value: "+91 8347402205",
-    href: "https://wa.me/918347402205?text=Hi%20Darshit,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Sola, Ahmedabad - 380060",
-    href: null,
-  },
-]
+import { siteConfig, contactInfo } from "@/lib/data"
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement | null>(null)
@@ -171,16 +145,16 @@ export default function Contact() {
           <div className="relative bg-card/45 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl overflow-hidden">
             {/* Social Icons Row */}
             <div className="flex items-center justify-center gap-3 mb-8 pb-6 border-b border-white/5">
-              <a href="https://github.com/Darshit-Sapariya" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
+              <a href={siteConfig.socials.github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
                 <FaGithub size={16} />
               </a>
-              <a href="https://www.linkedin.com/in/sapariya-darshit-47b7b1287" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
+              <a href={siteConfig.socials.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
                 <FaLinkedinIn size={16} />
               </a>
-              <a href="https://wa.me/918347402205?text=Hi%20Darshit,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-emerald-400 hover:border-emerald-400 transition-all duration-300">
+              <a href={siteConfig.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-emerald-400 hover:border-emerald-400 transition-all duration-300">
                 <FaWhatsapp size={16} />
               </a>
-              <a href="mailto:sapariyadarshit3596@gmail.com" className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
+              <a href={`mailto:${siteConfig.email}`} className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
                 <Mail size={16} />
               </a>
             </div>

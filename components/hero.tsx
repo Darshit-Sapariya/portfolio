@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { FaXTwitter, FaLinkedinIn, FaGithub, FaDribbble, FaWhatsapp } from "react-icons/fa6"
-import { Download } from "lucide-react"
+import { FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa6"
+import { Download, ArrowRight, Sparkles, Code2, Terminal, CheckCircle2 } from "lucide-react"
+import { siteConfig } from "@/lib/data"
 
 export default function Hero() {
-  const [counts, setCounts] = useState({ projects: 0, experience: 0 })
+  const [counts, setCounts] = useState({ projects: 0, experience: 0, internship: 0 })
   const sectionRef = useRef<HTMLDivElement>(null)
   const counted = useRef(false)
 
@@ -17,8 +18,8 @@ export default function Hero() {
       ([entry]) => {
         if (entry.isIntersecting) {
           counted.current = true
-          const duration = 2000
-          const steps = 60
+          const duration = 1800
+          const steps = 50
           const interval = duration / steps
           let step = 0
 
@@ -26,13 +27,14 @@ export default function Hero() {
             step++
             setCounts({
               projects: Math.min(3, Math.round((step / steps) * 3)),
-              experience: Math.min(2, Math.round((step / steps) * 2)),
+              experience: Math.min(1, Math.round((step / steps) * 1)),
+              internship: Math.min(3, Math.round((step / steps) * 3)),
             })
             if (step >= steps) clearInterval(timer)
           }, interval)
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.2 },
     )
 
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -40,76 +42,113 @@ export default function Hero() {
   }, [])
 
   const socialLinks = [
-    { icon: FaWhatsapp, href: "https://wa.me/918347402205?text=Hi%20Darshit,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" },
-    { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/sapariya-darshit-47b7b1287" },
-    { icon: FaGithub, href: "https://github.com/Darshit-Sapariya" },
-    { icon: FaXTwitter, href: "#" },
-    { icon: FaDribbble, href: "#" },
+    { icon: FaWhatsapp, href: siteConfig.socials.whatsapp, label: "WhatsApp" },
+    { icon: FaLinkedinIn, href: siteConfig.socials.linkedin, label: "LinkedIn" },
+    { icon: FaGithub, href: siteConfig.socials.github, label: "GitHub" },
+  ]
+
+  const techBadges = [
+    { name: "Python / Django", color: "from-blue-500/20 to-indigo-500/20 text-blue-400 border-blue-500/30" },
+    { name: "REST APIs (DRF)", color: "from-purple-500/20 to-pink-500/20 text-purple-400 border-purple-500/30" },
+    { name: "PostgreSQL / MySQL", color: "from-emerald-500/20 to-teal-500/20 text-emerald-400 border-emerald-500/30" },
+    { name: "AI Dev Platforms (Antigravity, OpenCode, Claude Code)", color: "from-amber-500/20 to-orange-500/20 text-amber-400 border-amber-500/30" },
   ]
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
+      className="relative min-h-[92vh] flex items-center pt-28 pb-20 overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[150px] -z-1 gradient-primary opacity-20 animate-pulse-glow" />
+      {/* Background Gradients & Glow Effects */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse-glow" />
+      <div className="absolute top-10 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
-      <svg viewBox="0 0 1320 300" className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-4xl opacity-[0.03] pointer-events-none">
-        <text x="50%" y="50%" textAnchor="middle" className="animate-stroke" fill="none" stroke="url(#gradient)" strokeWidth="2" fontSize="280" fontWeight="900">
-          HI
-        </text>
-        <defs>
-          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="100%" stopColor="#a855f7" />
-          </linearGradient>
-        </defs>
-      </svg>
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Decorative Large Background Typography */}
+      <div className="absolute top-16 left-1/2 -translate-x-1/2 select-none pointer-events-none opacity-[0.02] text-[180px] sm:text-[240px] md:text-[300px] font-black tracking-tighter leading-none bg-gradient-to-b from-white to-transparent bg-clip-text text-transparent">
+        PYTHON
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Content Column */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="lg:col-span-7"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              ✨ Available for Internships & Jobs
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
+            {/* Status Pill */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/25 backdrop-blur-md text-primary text-xs sm:text-sm font-semibold tracking-wide mb-6 shadow-sm shadow-primary/10"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Available for Jobs & Internships</span>
+              <Sparkles size={14} className="text-primary" />
+            </motion.div>
+
+            {/* Main Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight">
               Building <span className="gradient-text">Scalable</span>
               <br />
-              Backends & APIs
+              Backends & REST APIs
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
-              Hi, I'm Darshit Sapariya. I specialize in building high-performance server-side architectures, robust REST APIs, and full-stack solutions using <strong>Python, Django, React, PostgreSQL, and Electron</strong>.
+            {/* Description */}
+            <p className="text-base sm:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed font-normal">
+              Hi, I'm <strong className="text-foreground font-semibold">Darshit Sapariya</strong> — a Full-Stack Python Django Developer specializing in high-performance server architecture, robust REST APIs, optimized databases, and modern web applications.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-10">
+            {/* Tech Pill Tags */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {techBadges.map((badge, index) => (
+                <span
+                  key={index}
+                  className={`text-xs font-mono px-3 py-1.5 rounded-lg border bg-gradient-to-r ${badge.color} font-medium backdrop-blur-sm`}
+                >
+                  {badge.name}
+                </span>
+              ))}
+            </div>
+
+            {/* CTAs & Social Links */}
+            <div className="flex flex-wrap items-center gap-4 mb-12">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white rounded-full gradient-secondary hover:opacity-90 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/20"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 text-sm font-bold text-white rounded-full gradient-secondary hover:opacity-95 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/25"
               >
-                Let's Connect
+                <span>Let's Connect</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
+
               <a
-                href="/Resume.pdf"
+                href={siteConfig.resume}
                 download
-                className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-bold text-foreground border border-white/10 bg-white/5 backdrop-blur-md rounded-full hover:border-primary/50 hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2.5 px-7 py-4 text-sm font-bold text-foreground border border-white/10 bg-white/5 backdrop-blur-md rounded-full hover:border-primary/50 hover:bg-white/10 transition-all duration-300 hover:scale-105"
               >
-                Download CV
-                <Download size={16} />
+                <span>Download CV</span>
+                <Download size={16} className="text-primary" />
               </a>
-              <div className="flex gap-3 ml-2">
+
+              <div className="flex gap-2.5 ml-1">
                 {socialLinks.map((link, i) => (
                   <a
                     key={i}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary hover:bg-white/10 transition-all duration-300 text-base"
+                    aria-label={link.label}
+                    className="w-11 h-11 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-white/10 transition-all duration-300 text-lg hover:scale-110 shadow-sm"
                   >
                     <link.icon />
                   </a>
@@ -117,119 +156,96 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
-              <div>
-                <span className="text-4xl md:text-5xl font-extrabold gradient-text">{counts.projects}+</span>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mt-2">Projects Completed</p>
+            {/* Stats Row */}
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 border-t border-white/10 pt-8 max-w-lg">
+              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                <span className="text-3xl sm:text-4xl font-extrabold gradient-text">{counts.projects}+</span>
+                <p className="text-[11px] sm:text-xs font-semibold text-muted-foreground mt-1">Live Projects</p>
               </div>
-              <div>
-                <span className="text-4xl md:text-5xl font-extrabold gradient-text">{counts.experience}+</span>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mt-2">Years Learning</p>
+              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                <span className="text-3xl sm:text-4xl font-extrabold gradient-text">{counts.experience}+</span>
+                <p className="text-[11px] sm:text-xs font-semibold text-muted-foreground mt-1">Year Learning</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                <span className="text-3xl sm:text-4xl font-extrabold gradient-text">{counts.internship}</span>
+                <p className="text-[11px] sm:text-xs font-semibold text-muted-foreground mt-1">Months Intern</p>
               </div>
             </div>
           </motion.div>
 
+          {/* Right Visual Column */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center md:justify-end"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-5 flex items-center justify-center"
           >
-            {/* Main Visual Container */}
-            <div className="relative w-72 h-96 md:w-80 md:h-[400px] flex items-center justify-center">
+            <div className="relative w-64 h-80 sm:w-72 sm:h-88 md:w-80 md:h-[350px] flex items-center justify-center">
               
-              {/* Animated Futuristic Background Blur & Glowing Gradients */}
+              {/* Outer Decorative Floating Tech Badges */}
               <motion.div
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.25, 0.4, 0.25],
-                }}
-                transition={{
-                  duration: 7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -top-6 -left-6 w-48 h-48 bg-purple-600 rounded-full blur-3xl pointer-events-none"
-              />
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.2, 0.35, 0.2],
-                }}
-                transition={{
-                  duration: 9,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute -bottom-6 -right-6 w-48 h-48 bg-pink-500 rounded-full blur-3xl pointer-events-none"
-              />
-
-              {/* Subtle Dot Grid Pattern */}
-              <div className="absolute inset-0 bg-[radial-gradient(#a855f7_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-25 pointer-events-none rounded-3xl" />
-
-              {/* Decorative Rotating Geometric Ring */}
-              <div className="absolute -inset-4 border border-dashed border-purple-500/20 rounded-full animate-[spin_40s_linear_infinite] pointer-events-none" />
-              
-              {/* Floating tech badges */}
-              <motion.div
-                animate={{ y: [0, 8, 0], x: [0, -4, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -top-3 -right-6 z-25 bg-background/95 backdrop-blur-md border border-purple-500/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5 pointer-events-none"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-3 -left-4 z-30 bg-slate-900/90 backdrop-blur-xl border border-primary/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5"
               >
-                <span className="text-[10px] font-extrabold text-purple-400 font-mono tracking-wider">&lt;Django /&gt;</span>
+                <Terminal size={13} className="text-primary" />
+                <span className="text-[11px] font-mono font-bold text-primary">&lt;Django /&gt;</span>
               </motion.div>
 
               <motion.div
-                animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-                transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-                className="absolute top-1/3 -left-8 z-25 bg-background/95 backdrop-blur-md border border-blue-500/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5 pointer-events-none"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute top-1/2 -right-5 z-30 bg-slate-900/90 backdrop-blur-xl border border-purple-500/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5"
               >
-                <span className="text-[10px] font-extrabold text-blue-400 tracking-wider">PYTHON 🐍</span>
+                <Code2 size={13} className="text-purple-400" />
+                <span className="text-[11px] font-mono font-bold text-purple-300">REST APIs</span>
               </motion.div>
 
-              {/* Outer Neon Glow / Glass Card with Continuous Floating Animation */}
               <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="relative w-full h-full rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md p-3.5 shadow-2xl shadow-purple-950/20 group hover:border-purple-500/35 transition-colors duration-500 flex flex-col justify-between"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -bottom-3 left-4 z-30 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-1.5"
               >
+                <CheckCircle2 size={13} className="text-emerald-400" />
+                <span className="text-[11px] font-mono font-bold text-emerald-300">PostgreSQL</span>
+              </motion.div>
+
+              {/* Ambient Glowing Aura Behind Card */}
+              <div className="absolute -inset-3 bg-gradient-to-r from-primary/30 via-purple-500/20 to-blue-600/30 rounded-3xl blur-2xl opacity-60 pointer-events-none animate-pulse-glow" />
+
+              {/* Main Card Frame */}
+              <div className="relative w-full h-full rounded-3xl p-3 bg-slate-900/60 border border-white/10 backdrop-blur-2xl shadow-2xl overflow-hidden group">
                 
-                {/* Neon Border Image Wrapper */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.15)] group-hover:border-purple-500/40 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] transition-all duration-500">
+                {/* Inner Glow Border Wrapper */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-primary/20 group-hover:border-primary/40 transition-colors duration-500">
                   <Image
                     src="/my.jpg"
                     alt="Darshit Sapariya"
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     priority
                   />
                   
-                  {/* Subtle overlay gradient on image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Card Bottom Tag */}
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/10 flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-bold text-foreground">Darshit Sapariya</h3>
+                      <p className="text-[10px] text-muted-foreground">Full-Stack Python Django Developer</p>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-[9px] font-bold font-mono uppercase tracking-wider">
+                      GTU '26
+                    </span>
+                  </div>
                 </div>
 
-                {/* Floating "Available for Freelance" Status Card */}
-                <div className="absolute -bottom-3 -left-4 z-20 flex items-center gap-2.5 bg-background/95 backdrop-blur-md border border-emerald-500/30 px-4 py-2.5 rounded-2xl shadow-lg shadow-black/35 hover:scale-105 transition-transform duration-300">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                  </span>
-                  <span className="text-[11px] font-bold text-foreground/90 tracking-wide uppercase">
-                    Available for Freelance
-                  </span>
-                </div>
-
-              </motion.div>
+              </div>
 
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

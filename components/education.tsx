@@ -1,40 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { GraduationCap, Star, Building2, Calendar, BookOpen } from "lucide-react"
-
-const educationList = [
-  {
-    period: "2023 – 2026",
-    degree: "Bachelor of Engineering",
-    short: "B.E.",
-    specialization: "Information Technology",
-    school: "Sal College of Engineering",
-    university: "Gujarat Technological University (GTU)",
-    cgpa: "8.46",
-    highlights: ["Software Engineering", "Database Systems", "Computer Networks", "Full-Stack Development"],
-    iconBg: "from-violet-600 to-indigo-600",
-    accentColor: "violet",
-    badgeColor: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-    borderAccent: "hover:border-violet-500/30",
-    tagLine: "from-violet-500/60 via-indigo-500/40 to-transparent",
-  },
-  {
-    period: "2020 – 2023",
-    degree: "Diploma in Engineering",
-    short: "Diploma",
-    specialization: "Computer Engineering",
-    school: "Govt. Polytechnic, Gandhinagar",
-    university: "Gujarat Technological University (GTU)",
-    cgpa: "7.99",
-    highlights: ["Programming Basics", "Digital Electronics", "Web Technologies", "OOP Concepts"],
-    iconBg: "from-sky-600 to-cyan-600",
-    accentColor: "sky",
-    badgeColor: "bg-sky-500/10 border-sky-500/20 text-sky-400",
-    borderAccent: "hover:border-sky-500/30",
-    tagLine: "from-sky-500/60 via-cyan-500/40 to-transparent",
-  },
-]
+import { GraduationCap, Star, Building2, Calendar } from "lucide-react"
+import { educationList } from "@/lib/data"
 
 export default function Education() {
   return (
