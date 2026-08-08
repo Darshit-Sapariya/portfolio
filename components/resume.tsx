@@ -249,7 +249,7 @@ export default function Resume() {
                       <span>Core Technologies</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {["Python", "Django", "DRF", "PostgreSQL", "React", "Git"].map((tech, i) => (
+                      {["Python", "Django", "DRF", "PostgreSQL", "Git"].map((tech, i) => (
                         <motion.span
                           key={tech}
                           whileHover={{ scale: 1.1, y: -2 }}
