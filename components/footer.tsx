@@ -40,7 +40,7 @@ export default function Footer() {
     },
   ]
 
-  const techStack = ["Python", "Django", "React", "Next.js", "Node.js", "PostgreSQL"]
+  const techStack = []
 
   return (
     <footer className="relative border-t border-white/5 bg-slate-950/80 overflow-hidden">
